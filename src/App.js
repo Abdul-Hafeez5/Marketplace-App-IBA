@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState } from "react";
+import BeforeFootersec from "./components/BeforeFootersec";
+import Footer from "./components/Footer";
+import HeroSec from "./components/HeroSec";
+import Navbar from "./components/Navbar";
+import { ThemeContext } from "./ThemeContext";
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${isDarkMode ? "bg-white" : "bg-[#2B2B2B]"}`}>
+      <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+        <Navbar />
+        <HeroSec />
+        <BeforeFootersec />
+        <Footer />
+      </ThemeContext.Provider>
     </div>
   );
 }
