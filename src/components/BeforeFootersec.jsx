@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoLogoInstagram } from "react-icons/io";
 import { IoLogoTwitter } from "react-icons/io";
 import { IoLogoYoutube } from "react-icons/io";
 import { IoLogoDiscord } from "react-icons/io5";
 import { InputFields } from "./HeroSec";
+import { ThemeContext } from "../ThemeContext";
 
 const BeforeFootersec = () => {
+  const { isDarkMode } = useContext(ThemeContext);
   return (
-    <div className="mx-[30px] mt-10 md:mx-[72px] lg:mx-[140px] lg:flex lg:justify-evenly lg:items-center text-white">
+    <div
+      className={`mx-[30px] mt-10 md:mx-[72px] lg:mx-[140px] lg:flex lg:justify-evenly lg:items-center ${
+        isDarkMode ? "text-black" : "text-white"
+      }`}
+    >
       <div className="flex flex-col gap-y-5">
         <h1 className="text-[22px] font-bold">NFT Marketplace</h1>
         <p className="text-base">

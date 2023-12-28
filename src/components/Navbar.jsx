@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { LuUser2 } from "react-icons/lu";
 import { RiMenu2Line } from "react-icons/ri";
 import { MdOutlineLightMode } from "react-icons/md";
+import { ThemeContext } from "../ThemeContext";
 
 const Navbar = () => {
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navLinks = ["Marketplace", "Ranking", "Connect a wallet"];
 
@@ -12,11 +14,20 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="text-white flex justify-between items-center px-12 py-5 ">
+    <nav
+      className={`${
+        isDarkMode ? "text-black" : "text-white"
+      } flex justify-between items-center px-12 py-5 `}
+    >
       <div>
-        <span>NFT Marketplace</span>
+        <span className="text-2xl font-bold">NFT Marketplace</span>
       </div>
-      <MdOutlineLightMode className="cursor-pointer" />
+      <MdOutlineLightMode
+        className={`hidden md:cursor-pointer md:block w-10 ${
+          isDarkMode ? "text-black" : "text-white"
+        } `}
+        onClick={toggleTheme}
+      />
 
       <div className="hidden md:flex items-center">
         <ul className="flex  text-base font-semibold leading-5 gap-2">
@@ -33,12 +44,6 @@ const Navbar = () => {
       </div>
       <RiMenu2Line
         className={`md:hidden z-10 text-white`}
-        onClick={() => toggleMenu()}
-      />
-      <MdOutlineLightMode
-        className={`md:hidden w-8 h-8 mr-2 cursor-pointer z-20 ${
-          isMenuOpen ? "text-white" : "text-black"
-        }`}
         onClick={() => toggleMenu()}
       />
 

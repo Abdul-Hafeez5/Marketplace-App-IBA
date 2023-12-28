@@ -11,14 +11,14 @@ function App() {
     setIsDarkMode(!isDarkMode);
   };
   return (
-    <div className={`${isDarkMode ? "bg-white" : "bg-[#2B2B2B]"}`}>
-      <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      <div className={`${isDarkMode ? "bg-white" : "bg-[#2B2B2B]"}`}>
         <Navbar />
         <HeroSec />
         <BeforeFootersec />
         <Footer />
-      </ThemeContext.Provider>
-    </div>
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
